@@ -1,0 +1,27 @@
+{
+  "name": "101",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.3.0",
+    "graphql-custom-types": "^1.5.0",
+    "graphql-tools": "^4.0.4",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "sequelize": "^5.8.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "sequelize-cli": "^5.4.0",
+    "sqlite3": "^4.0.8",
+    "supertest": "^4.0.2"
+  }
+}
