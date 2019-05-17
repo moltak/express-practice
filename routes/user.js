@@ -9,7 +9,8 @@ router.post('/', async (req, res, next) => {
             name: req.body.name,
             createdAt: new Date(),
             updatedAt: new Date()
-        })
+        }).save()
+        
         res.status(200).send('ok')
     } catch (e) {
         res.status(400).send('fail')

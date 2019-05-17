@@ -91,7 +91,7 @@ describe('Post Controller Test', () => {
                 })
         })
 
-        it.only ('Comments', async () => {
+        it ('Comments', async () => {
             await Post.build({
                 title: DUMMY_TITLE,
                 contents: DUMMY_CONTENTS
