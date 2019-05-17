@@ -6,7 +6,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Users', [
       {
-        name: 'DUMMY_USER_1',
+        name: 'SEED_USER_1',
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -15,8 +15,8 @@ module.exports = {
     const user = await User.findOne({})
     await queryInterface.bulkInsert('Posts', [
       {
-        title: 'DUMMEY_POST_1',
-        contents: 'DUMMY_POST_CONTENTS',
+        title: 'SEED_POST_1',
+        contents: 'SEED_POST_CONTENTS',
         userId: user.id,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -26,7 +26,7 @@ module.exports = {
     const post = await Post.findOne({})
     return queryInterface.bulkInsert('Comments', [
       {
-        contents: 'DUMMY_COMMENTS_1',
+        contents: 'SEED_COMMENTS_1',
         userId: user.id,
         postId: post.id,
         createdAt: new Date(),
