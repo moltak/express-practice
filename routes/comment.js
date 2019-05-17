@@ -6,7 +6,9 @@ const { Comment } = require('../models')
 router.post('/', async (req, res, next) => {
     try {
         await Comment.build({
-            contents: req.body.contents
+            contents: req.body.contents,
+            createdAt: new Date(),
+            updatedAt: new Date()
         }).save()
 
         res.status(200).send('ok')
@@ -20,7 +22,8 @@ router.put('/:id', async (req, res, next) => {
         const comment = await Comment.findOne({where: {id: req.params.id}})
         
         await comment.update({
-            contents: req.body.contents
+            contents: req.body.contents,
+            updatedAt: new Date()
         })
 
         res.status(200).send('ok')

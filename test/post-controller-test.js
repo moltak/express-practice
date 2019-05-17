@@ -1,7 +1,7 @@
 const expect = require('chai').expect
 const request = require('supertest')
 const app = require('../app')
-const { Post } = require('../models')
+const { Post, Comment } = require('../models')
 
 describe('Post Controller Test', () => {
     const DUMMY_USER            = 'DUMMY_USER'
@@ -13,6 +13,11 @@ describe('Post Controller Test', () => {
 
     beforeEach(async () => {
         await Post.destroy({
+            where: {},
+            truncate: true
+        })
+
+        await Comment.destroy({
             where: {},
             truncate: true
         })
@@ -83,6 +88,33 @@ describe('Post Controller Test', () => {
                 .then(async () => {
                     const posts = await Post.findAll({})
                     expect(posts.length).is.equal(0)
+                })
+        })
+
+        it.only ('Comments', async () => {
+            await Post.build({
+                title: DUMMY_TITLE,
+                contents: DUMMY_CONTENTS
+            }).save()
+
+            const post = await Post.findOne({where: {title: DUMMY_TITLE}})
+
+            await Comment.build({
+                contents: DUMMY_CONTENTS,
+                PostId: post.id
+            }).save()
+
+            await Comment.build({
+                contents: DUMMY_CONTENTS,
+                PostId: post.id
+            }).save()
+
+            return request(app)
+                .get(`/posts/${post.id}/comments?page=0&pageMax=1`)
+                .expect(200)
+                .then(res => {
+                    expect(res.body._data.comments.length).is.equal(1)
+                    expect(res.body._links.next).is.equal(`/posts/${post.id}/comments?page=1&pageMax=1`)
                 })
         })
     })

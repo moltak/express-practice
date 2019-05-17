@@ -5,7 +5,11 @@ const { User, Post, Comment } = require('../models')
 
 router.post('/', async (req, res, next) => {
     try {
-        await User.build({name: req.body.name})
+        await User.build({
+            name: req.body.name,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        })
         res.status(200).send('ok')
     } catch (e) {
         res.status(400).send('fail')
@@ -35,7 +39,9 @@ router.post('/:id/posts', async (req, res, next) => {
         await Post.build({
             title: req.body.title,
             contents: req.body.contents,
-            UserId: req.params.id
+            UserId: req.params.id,
+            createdAt: new Date(),
+            updatedAt: new Date()
         }).save()
 
         res.status(200).send('ok')
@@ -63,7 +69,9 @@ router.post('/:id/comments', async (req, res, next) => {
     try {
         await Comment.build({
             contents: req.body.contents,
-            UserId: req.params.id
+            UserId: req.params.id,
+            createdAt: new Date(),
+            updatedAt: new Date()
         }).save()
 
         res.status(200).send('ok')

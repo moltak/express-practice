@@ -3,7 +3,7 @@ const request = require('supertest')
 const app = require('../app')
 const { Comment } = require('../models')
 
-describe.only('Comment Controller Test', () => {
+describe('Comment Controller Test', () => {
     const DUMMY_CONTENTS        = 'DUMMY_CONTENTS'
     const DUMMY_EDITED_CONTENTS = 'DUMMY_EDITED_TITLE'
 
