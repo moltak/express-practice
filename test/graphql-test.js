@@ -3,7 +3,7 @@ const { graphql } = require('graphql')
 const UserScheme = require('../graphql/user')
 const { User, Post, Comment } = require('../models')
 
-describe.only('User Scheme test', () => {
+describe('User Scheme test', () => {
     const DUMMY_USER        = 'DUMMY_USER'
     const DUMMY_TITLE       = 'DUMMY_TITLE'
     const DUMMY_CONTENTS    = 'DUMMY_CONTENTS'
